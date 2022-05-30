@@ -22,15 +22,13 @@ def align_sequence(s0, s1):
     maxj=s1_len
     for i in range(s0_len,0, -1):
         if i>maxi:
-            print(i)
             continue
         for j in range(s1_len,0, -1):
             if j>maxj:
-                print(j)
                 continue
             if (matrix[i][j]>matrix[i][j-1]) & (matrix[i][j]>matrix[i-1][j]):
                 aligned_answer.append(x[i-1])
-                aligned_index.append(i-1)
+                aligned_index.append(j-1)
                 print(i,j,matrix[i][j])
                 maxi=i
                 maxj=j
@@ -39,13 +37,15 @@ def align_sequence(s0, s1):
     return matrix[-1][-1], aligned_answer, aligned_index
 
 
-
+#user's steps
 a=[1,1,3,5,4,4,1,2,6,8]
+
+#correct answer
 b=[1,2,3,4,5,6,7,8]
 
 #a=[5,4,3,2,1]
 #b=[1,2,3,4,5]
 number,answer,index=align_sequence(b,a)
-print('Total aligned sequence are',number)
-print('The result that aligned to the correct answers are',answer)
-print('The index that aligned to the correct answer are',index)
+print('Total aligned sequence are %s, and the score would be %s' % (number, (number/len(a)*100)))
+print('The result of the steps that aligned to the correct answers are',answer)
+print('The index of the steps that aligned to the correct answer are',index)
